@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo - Axis Bank</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        body { margin: 0; font-family: 'Lato', sans-serif; letter-spacing: -0.04em; overflow-x: hidden; }
+        
+        .section { 
+            min-height: 100vh; 
+            padding: 80px 40px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            width: 100%;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .container.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .text-block {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .img-placeholder {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.6);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        h1 { font-size: 4.5rem; font-weight: 900; margin: 0 0 20px 0; line-height: 1; }
+        h2 { font-size: 3rem; font-weight: 800; margin: 0 0 20px 0; }
+        p { font-size: 1.4rem; line-height: 1.6; opacity: 0.9; margin: 0; }
+
+        .s1 { background: #97144D; }
+        .s2 { background: #3BCBEB; }
+        .s3 { background: #F6C945; }
+        .s4 { background: #A4D01E; }
+        .s5 { background: #2D3748; }
+
+        .back-link { 
+            position: fixed; 
+            top: 30px; 
+            left: 30px; 
+            color: #1a1a1a; 
+            text-decoration: none; 
+            font-size: 1rem; 
+            font-weight: 700;
+            background: rgba(255,255,255,0.95); 
+            padding: 12px 24px; 
+            border-radius: 50px; 
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        .back-link:hover { transform: scale(1.05); }
+
+    </style>
+</head>
+<body>
+    <a href="things.html" class="back-link">← Back</a>
+
+    <!-- Section 1: Intro -->
+    <div class="section s1">
+        <div class="container">
+            <div class="text-block">
+                <div class="anim-item">INTRODUCING</div>
+                <h1 class="anim-item">Logo</h1>
+                <p class="anim-item">This section defines the core principles of our logo, establishing a foundation for consistency and excellence across all brand touchpoints.</p>
+            </div>
+            <div class="img-placeholder anim-item">Hero Visual</div>
+        </div>
+    </div>
+
+    <!-- Section 2: Concept (Reverse Layout) -->
+    <div class="section s2">
+        <div class="container reverse">
+            <div class="text-block">
+                <h2 class="anim-item">The Concept</h2>
+                <p class="anim-item">Every design decision is rooted in purpose. Our logo is not just about aesthetics—it's about communication, clarity, and creating an emotional connection with our audience.</p>
+            </div>
+            <div class="img-placeholder anim-item">Concept Sketch</div>
+        </div>
+    </div>
+
+    <!-- Section 3: Application -->
+    <div class="section s3">
+        <div class="container">
+            <div class="text-block">
+                <h2 class="anim-item">Application</h2>
+                <p class="anim-item">Versatility is key. Whether digital or physical, small scale or large, our logo adapts seamlessly while maintaining its distinctive character and integrity.</p>
+            </div>
+            <div class="img-placeholder anim-item">Usage Mockup</div>
+        </div>
+    </div>
+
+    <!-- Section 4: Examples (Reverse) -->
+    <div class="section s4">
+        <div class="container reverse">
+            <div class="text-block">
+                <h2 class="anim-item">Live Examples</h2>
+                <p class="anim-item">From marketing collateral to user interface components, see how our logo comes to life in real-world scenarios, driving brand recognition.</p>
+            </div>
+            <div class="img-placeholder anim-item">Real World Photo</div>
+        </div>
+    </div>
+
+    <!-- Section 5: Guidelines -->
+    <div class="section s5">
+        <div class="container">
+            <div class="text-block">
+                <h2 class="anim-item">Guidelines</h2>
+                <p class="anim-item">Consistency builds trust. Follow these rules to ensure that every usage of our logo strengthens the brand rather than diluting it.</p>
+            </div>
+            <div class="img-placeholder anim-item">Do's & Don'ts</div>
+        </div>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Loop through each section for scoped animations
+        document.querySelectorAll('.section').forEach(section => {
+            const items = section.querySelectorAll('.anim-item');
+            
+            gsap.from(items, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 75%", // Triggers when top of section hits 75% down screen (earlier visibility)
+                    toggleActions: "play none none none" // Play once, don't reverse (prevents disappearing)
+                },
+                y: 60,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>

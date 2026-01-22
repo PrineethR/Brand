@@ -1,0 +1,588 @@
+/* 1. RESET & VIEWPORT SETUP */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    margin: 0;
+}
+
+body {
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    width: 100vw;
+    /* overflow: hidden; */
+    /* Removed to allow scrolling */
+    padding: 0;
+    /* Remove padding to let sections fill width */
+    letter-spacing: -0.04em;
+}
+
+/* 2. MAIN GRID LAYOUT */
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 12px;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+/* 3. COLUMNS */
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+    min-width: 0;
+}
+
+/* 4. CARD BASE STYLES */
+.card {
+    display: flex;
+    /* Makes the anchor behave like a container */
+    flex-direction: column;
+    justify-content: space-between;
+    /* Align content if needed */
+    text-decoration: none;
+    /* Remove underline from link */
+    color: inherit;
+    /* Inherit text color */
+    position: relative;
+    border-radius: 24px;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.8s ease;
+    z-index: 1;
+}
+
+/* Hover effect: Change to burgundy */
+.card:hover {
+    box-shadow: 0 20px 40px rgba(151, 20, 77, 0.2);
+}
+
+/* Color transition on hover */
+.framework:hover {
+    background: linear-gradient(135deg, #97144D 0%, #7d1040 100%);
+}
+
+.iconography:hover {
+    background: linear-gradient(135deg, #97144D 0%, #7d1040 100%);
+}
+
+.voice:hover {
+    background: linear-gradient(135deg, #97144D 0%, #7d1040 100%);
+}
+
+.color-card:hover {
+    background: linear-gradient(135deg, #97144D 0%, #7d1040 100%);
+}
+
+.logo:hover {
+    background: linear-gradient(135deg, #97144D 0%, #7d1040 100%);
+}
+
+.imagery:hover {
+    background: linear-gradient(135deg, #97144D 0%, #7d1040 100%);
+}
+
+.typography:hover {
+    background: linear-gradient(135deg, #97144D 0%, #7d1040 100%);
+}
+
+.motion:hover {
+    background: linear-gradient(135deg, #97144D 0%, #7d1040 100%);
+}
+
+/* Content Wrapper */
+.card-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    z-index: 2;
+    /* Crucial: Content stays above the burgundy overlay */
+}
+
+/* Typography */
+h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.04em;
+    pointer-events: none;
+    transition: color 0.6s ease;
+    font-family: 'Lato', sans-serif;
+}
+
+.text-light h2 {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* On hover, make text light so it is readable against burgundy, 
+   but not "pure harsh white" if undesired, using off-white */
+.card:hover h2 {
+    color: #f2f2f2;
+}
+
+
+/* 5. DYNAMIC GRADIENTS & PROPORTIONS (Initial States) */
+
+/* Column 1 */
+.framework {
+    background: linear-gradient(135deg, #2D3748 0%, #1a202c 100%);
+    flex: 60;
+}
+
+.iconography {
+    background: linear-gradient(135deg, #A4D01E 0%, #8eb518 100%);
+    flex: 40;
+}
+
+/* Column 2 */
+.voice {
+    background: linear-gradient(135deg, #F6C945 0%, #eebb2e 100%);
+    flex: 45;
+}
+
+.color-card {
+    background: linear-gradient(135deg, #FF9000 0%, #e07e00 100%);
+    flex: 55;
+}
+
+/* Column 3 */
+.logo {
+    background: linear-gradient(135deg, #3BCBEB 0%, #2cb2d1 100%);
+    flex: 65;
+}
+
+.imagery {
+    background: linear-gradient(135deg, #7D2057 0%, #5e1841 100%);
+    flex: 35;
+}
+
+/* Column 4 */
+.typography {
+    background: linear-gradient(135deg, #F24E1E 0%, #d63f14 100%);
+    flex: 45;
+}
+
+.motion {
+    background: linear-gradient(135deg, #CBB5E8 0%, #b39bd6 100%);
+    flex: 55;
+}
+
+
+/* 6. VISUAL ASSETS STYLING */
+/* I removed all "turn white on hover" rules. 
+   They now keep their original transparency, which blends darkly into the burgundy. */
+
+.visual,
+.visual::before,
+.visual::after,
+.visual div {
+    position: absolute;
+    pointer-events: none;
+    transition: all 1s ease;
+    /* Smooth transition if we change anything */
+}
+
+/* Framework Lines */
+.fw-viz {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.fw-dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.fw-line {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    transform-origin: 0 0;
+}
+
+.d1 {
+    top: 40%;
+    left: 0;
+}
+
+.d2 {
+    bottom: 30%;
+    right: 0;
+}
+
+.d3 {
+    bottom: 10%;
+    left: 0;
+}
+
+.l1 {
+    width: 120%;
+    top: 40%;
+    left: 0;
+    transform: rotate(25deg);
+}
+
+.l2 {
+    width: 120%;
+    bottom: 30%;
+    right: -20px;
+    transform: rotate(155deg);
+}
+
+/* Iconography Lock */
+.lock {
+    width: 44px;
+    height: 36px;
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    bottom: 30px;
+    left: 30px;
+}
+
+.lock::before {
+    content: '';
+    top: -26px;
+    left: 4px;
+    width: 26px;
+    height: 26px;
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 0;
+    border-radius: 13px 13px 0 0;
+}
+
+/* Voice Quotes */
+.quote {
+    font-family: Georgia, serif;
+    font-size: 7rem;
+    color: rgba(0, 0, 0, 0.15);
+    line-height: 0;
+}
+
+.q-open {
+    top: 80px;
+    left: 10px;
+}
+
+.q-close {
+    bottom: 20px;
+    right: 20px;
+}
+
+/* Color Squares */
+.sq {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    backdrop-filter: brightness(0.9);
+}
+
+.sq-1 {
+    bottom: 70px;
+    right: 70px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.sq-2 {
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Logo Diamonds */
+.logo-shape {
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 50px;
+    opacity: 0.4;
+}
+
+.diamond {
+    width: 22px;
+    height: 22px;
+    background: #083c47;
+    transform: rotate(45deg);
+    border-radius: 2px;
+}
+
+.d1 {
+    top: 0;
+    left: 22px;
+}
+
+.d2 {
+    top: 16px;
+    left: 0px;
+}
+
+.d3 {
+    top: 16px;
+    right: 0px;
+}
+
+.d4 {
+    top: 32px;
+    left: 22px;
+}
+
+/* Imagery Mountains */
+.mountain {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 50px 50px 0 0;
+}
+
+.m-big {
+    right: 0;
+    width: 140px;
+    height: 90px;
+}
+
+.m-small {
+    right: 70px;
+    width: 90px;
+    height: 60px;
+}
+
+/* Typography Aa */
+.aa {
+    font-size: 11rem;
+    bottom: -35px;
+    right: -10px;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.15);
+    line-height: 1;
+    letter-spacing: -6px;
+}
+
+/* Motion Curve */
+.bezier-viz {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.path-line {
+    top: 30%;
+    right: 20px;
+    width: 80%;
+    height: 50%;
+    border-right: 3px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0 100% 0 0;
+    transform: scaleX(-1);
+}
+
+.m-dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+}
+
+.m-dot-start {
+    top: 30%;
+    right: 20px;
+}
+
+.m-dot-end {
+    bottom: 20%;
+    left: 20px;
+}
+
+/* 2. MAIN GRID LAYOUT */
+.scrolling-text {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #97144D;
+    position: relative;
+    text-align: center;
+}
+
+.brand-name {
+    font-size: 6rem;
+    font-weight: 950;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    font-family: 'Lato', sans-serif;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    margin-top: 20px;
+    color: #1a1a1a;
+    opacity: 0.6;
+    font-family: 'Lato', sans-serif;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #97144D;
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* PATHWAY SECTION */
+.pathway-section {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, #fff 0%, #f5f5f5 100%);
+    padding: 60px 20px;
+    overflow: hidden;
+}
+
+.pathway-graphic {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+}
+
+.pathway-curve {
+    animation: drawPath 3s ease-in-out forwards;
+}
+
+@keyframes drawPath {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.pathway-dot {
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+.arrow {
+    display: block;
+    font-weight: bold;
+}
+
+/* Card Link Wrapper */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+/* DETAIL SECTIONS */
+.details-container {
+    background-color: #ffffff;
+}
+
+.detail-section {
+    min-height: 100vh;
+    padding: 80px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+    opacity: 0;
+    /* Hidden initially for GSAP */
+    transform: translateY(50px);
+    overflow: hidden;
+}
+
+.detail-section:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.content-wrapper {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #97144D;
+    margin-bottom: 24px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: -0.04em;
+}
+
+.section-text {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.placeholder-block {
+    width: 100%;
+    height: 300px;
+    background: #e0e0e0;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-block::after {
+    content: "Visual Asset Placeholder";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #999;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
